@@ -47,7 +47,19 @@ if ingredients_list:
         st.subheader(fruit_chosen + ' Nutrition Information')
         # new section to display smoothiefroot nutrition information
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + search_on)
-        sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width = True)
+        sf_df = smoothiefroot_response.json() # Not yet a dataframe
+        # sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width = True)
+        if isinstance(sf_data, dict):
+            sf_df = [sf_df]
+
+        # Normalize the JSON (flattening the 'nutrition' dictionary')
+        sf_df = pd.json_normalize(sf_data, sep="_")
+
+        # selecting only specific columns
+        selected_columns = ["name", "nutrition_carbs", "nutrition_fat", "nutrition_protein","nutrition_sugar"]
+        sf_df = sf_df[selected_columns]
+
+        st.dataframe(sf_df, use_container_width = True)
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
             values ('""" + ingredients_string + """','"""+name_on_order+ """')"""
