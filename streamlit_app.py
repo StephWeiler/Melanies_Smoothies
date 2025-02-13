@@ -38,7 +38,6 @@ if ingredients_list:
         # new section to display smoothiefroot nutrition information
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + fruit_chosen)
         sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width = True)
-        sf_df = sf_df["nutrition"]
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients, name_on_order)
             values ('""" + ingredients_string + """','"""+name_on_order+ """')"""
