@@ -53,7 +53,7 @@ if ingredients_list:
             sf_df = [sf_df]
 
         # Normalize the JSON (flattening the 'nutrition' dictionary')
-        sf_df = pd.json_normalize(sf_data, sep="_")
+        sf_df = pd.json_normalize(sf_df, sep="_")
 
         # selecting only specific columns
         selected_columns = ["name", "nutrition_carbs", "nutrition_fat", "nutrition_protein","nutrition_sugar"]
