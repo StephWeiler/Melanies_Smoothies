@@ -57,7 +57,8 @@ if ingredients_list:
 
         # selecting only specific columns
         selected_columns = ["name", "nutrition_carbs", "nutrition_fat", "nutrition_protein","nutrition_sugar"]
-        sf_df = sf_df[selected_columns]
+        exisiting_columns = [col for col in selected_columns if col in sf_df.columns]
+        sf_df = sf_df[exisiting_columns]
 
         st.dataframe(sf_df, use_container_width = True)
 
