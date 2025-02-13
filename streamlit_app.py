@@ -49,7 +49,7 @@ if ingredients_list:
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + search_on)
         sf_df = smoothiefroot_response.json() # Not yet a dataframe
         # sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width = True)
-        if isinstance(sf_data, dict):
+        if isinstance(sf_df, dict):
             sf_df = [sf_df]
 
         # Normalize the JSON (flattening the 'nutrition' dictionary')
